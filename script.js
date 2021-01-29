@@ -1,9 +1,5 @@
 function handleTicket(ticketType, isIncrease) {
-
     //Ticket Count
-    //const ticketInput = document.getElementById(ticketType + 'TicketInput');
-    //const ticketCount = parseInt(ticketInput.value);
-
     const ticketCount = getTicketInput(ticketType);
     let ticketTotalCount = ticketCount;
     if (isIncrease == true) {
@@ -11,7 +7,6 @@ function handleTicket(ticketType, isIncrease) {
     } else if (isIncrease == false && ticketCount > 0) {
         ticketTotalCount = ticketCount - 1;
     }
-
     document.getElementById(ticketType + 'TicketInput').value = ticketTotalCount;
 
     //Price Declared
@@ -21,6 +16,7 @@ function handleTicket(ticketType, isIncrease) {
     } else if (ticketType = 'economy') {
         ticketPrice = ticketTotalCount * 100;
     }
+    //Call a function for calculate subtotal tax and show total
     totalTicketPrice();
 }
 
@@ -35,16 +31,28 @@ function getTicketInput(ticketType) {
 
 // Write function for calculate total ticket price  
 function totalTicketPrice() {
+    //subTotal ticket price Declared
     const firstClassTicketCount = getTicketInput('firstClass');
     const economyTicketCount = getTicketInput('economy');
-    const totalTicketPrice = firstClassTicketCount * 150 + economyTicketCount * 100;
-    console.log(totalTicketPrice);
+    const subtotalTicketPrice = firstClassTicketCount * 150 + economyTicketCount * 100;
+    document.getElementById('subtotalTicketPrice').innerText = subtotalTicketPrice;
+
+    //Declared Tax
+    const ticketTax = subtotalTicketPrice * 0.1;
+    document.getElementById('ticketTax').innerText = Math.round(ticketTax)
+
+    //Total ticket price Declared
+    const totalTicketPrice = subtotalTicketPrice + ticketTax;
+    document.getElementById('totalTicketPrice').innerText = totalTicketPrice;
 }
 
 
-
-
-
+//write function for show success message (Bonus Part)
+function handleBookNow() {
+    document.getElementById('bookingForm').style.display = "none";
+    document.getElementById('bookingContent').style.display = "none";
+    document.getElementById('successMessage').style.display = "block";
+}
 
 
 
