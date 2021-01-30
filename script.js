@@ -44,6 +44,7 @@ function totalTicketPrice() {
     //Total ticket price Declared
     const totalTicketPrice = subtotalTicketPrice + ticketTax;
     document.getElementById('totalTicketPrice').innerText = totalTicketPrice;
+
 }
 
 
@@ -53,6 +54,10 @@ function handleBookNow() {
     document.getElementById('bookingContent').style.display = "none";
     document.getElementById('successMessage').style.display = "block";
 }
+
+
+
+
 
 
 
